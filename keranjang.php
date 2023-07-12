@@ -10,22 +10,14 @@ if(!isset($user_id)){
    header('location:login.php');
 }
 
-if(isset($_POST['update_cart'])){
-   $cart_id = $_POST['cart_id'];
-   $cart_pdf = $_POST['cart_pdf'];
-   $cart_quantity = $_POST['cart_quantity'];
-   mysqli_query($conn, "UPDATE `cart` SET quantity = '$cart_quantity', pdf = '$cart_pdf' WHERE id = '$cart_id'") or die('query failed');
-   $message[] = 'Isi Keranjang Diperbarui!';
-}
-
-if(isset($_GET['delete'])){
-   $delete_id = $_GET['delete'];
-   mysqli_query($conn, "DELETE FROM `cart` WHERE id = '$delete_id'") or die('query failed');
+if(isset($_POST['delete'])){
+   $delete_id = $_POST['delete'];
+   mysqli_query($conn, "DELETE FROM `keranjang` WHERE id = '$delete_id'") or die('query failed');
    header('location:keranjang.php');
 }
 
-if(isset($_GET['delete_all'])){
-   mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+if(isset($_POST['delete_all'])){
+   mysqli_query($conn, "DELETE FROM `keranjang` WHERE pengguna_id = '$user_id'") or die('query failed');
    header('location:keranjang.php');
 }
 
@@ -38,11 +30,10 @@ if(isset($_GET['delete_all'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Keranjang</title>
+   <link rel="icon" href="images/perpus.png">
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -50,7 +41,7 @@ if(isset($_GET['delete_all'])){
    
 <?php include 'header.php'; ?>
 
-<div class="heading">
+<div class="keranjang">
    <h3>Keranjang</h3>
    <p> <a href="beranda.php">Beranda</a> / Keranjang </p>
 </div>
@@ -62,53 +53,49 @@ if(isset($_GET['delete_all'])){
    <div class="box-container">
       <?php
          $grand_total = 0;
-         $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+         $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE pengguna_id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($select_cart) > 0){
             while($fetch_cart = mysqli_fetch_assoc($select_cart)){   
+               $sub_total = $fetch_cart['kuantitas'];
+               $grand_total += $sub_total;
       ?>
       <div class="box">
-         <a href="keranjang.php?delete=<?php echo $fetch_cart['id']; ?>" class="fas fa-times" onclick="return confirm('Hapus ini dari keranjang?');"></a>
-         <img src="uploaded_img/<?php echo $fetch_cart['image']; ?>" alt="">
-         <?php if (isset($fetch_cart['name'])) { ?>
-            <div class="name"><?php echo $fetch_cart['name']; ?></div>
-         <?php } ?>
          <form action="" method="post">
-            <input type="hidden" name="cart_id" value="<?php echo $fetch_cart['id']; ?>">
-            <input type="hidden" name="cart_pdf" value="<?php echo $fetch_cart['pdf']; ?>">
-            <input type="number" min="1" name="cart_quantity" value="<?php echo $fetch_cart['quantity']; ?>">
-            <button type="submit" name="update_cart" class="option-btn">Perbarui</button>
+            <button type="submit" name="delete" value="<?php echo $fetch_cart['id']; ?>" onclick="return confirm('Hapus ini dari keranjang?');">
+               <i class="fas fa-times"></i>
+            </button>
+            <img src="uploaded_img/<?php echo $fetch_cart['gambar']; ?>" alt="">
+            <?php if (isset($fetch_cart['nama'])) { ?>
+               <div class="name"><?php echo $fetch_cart['nama']; ?></div>
+            <?php } ?>
+            <input type="hidden" name="keranjang_id" value="<?php echo $fetch_cart['id']; ?>">
+            
          </form>
       </div>
       <?php
-      $sub_total = ($fetch_cart['quantity']);
-      $grand_total += $sub_total;
          }
       }else{
-         echo '<p class="empty">keranjang kosong</p>';
+         echo '<p class="empty">Keranjang Kosong</p>';
       }
       ?>
    </div>
 
    <div style="margin-top: 2rem; text-align:center;">
-      <a href="keranjang.php?delete_all" class="delete-btn <?php echo ($grand_total > 1)?'':'disabled'; ?>" onclick="return confirm('Hapus semua buku dikeranjang?');">Hapus Semua</a>
+      <form action="" method="post">
+         <input type="hidden" name="delete_all" value="1">
+         <button type="submit" class="delete-btn <?php echo ($grand_total > 0)?'':'disabled'; ?>" onclick="return confirm('Hapus semua buku dikeranjang?');">Hapus Semua</button>
+      </form>
    </div>
 
    <div class="cart-total">
-      <p>Total Buku : <span><?php echo $grand_total; ?>/-</span></p>
+      <p>Total Buku : <span><?php echo $grand_total; ?></span></p>
       <div class="flex">
          <a href="katalog.php" class="option-btn">Cari Buku Lainnya</a>
-         <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':'disabled'; ?>">Proses Meminjam</a>
+         <a href="checkout.php" class="btn <?php echo ($grand_total > 0)?'':'disabled'; ?>">Proses Meminjam</a>
       </div>
    </div>
 
 </section>
-
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
 
