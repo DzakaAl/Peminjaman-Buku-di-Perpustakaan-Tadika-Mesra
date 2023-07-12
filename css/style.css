@@ -133,6 +133,74 @@ section{
    color:var(--black);
 }
 
+.keranjang{
+   min-height: 30vh;
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   justify-content: center;
+   gap:1rem;
+   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/keranjang.jpg) fixed center no-repeat;
+   background-size: cover;
+   background-position: center;
+   background-position-y: -250px ;
+   text-align: center;
+}
+
+.keranjang h3{
+   font-size: 5rem;
+   color:var(--white);
+   text-transform: uppercase;
+}
+
+.keranjang p{
+   font-size: 2.5rem;
+   color:var(--light-white);
+}
+
+.keranjang p a{
+   font-weight: 450;
+   color:var(--blue);
+}
+
+.keranjang p a:hover{
+   text-decoration: underline;
+}
+
+.pencarian{
+   min-height: 30vh;
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   justify-content: center;
+   gap:1rem;
+   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/pencarian.jpg) fixed center no-repeat;
+   background-size: cover;
+   background-position: center;
+   background-position-y: -150px ;
+   text-align: center;
+}
+
+.pencarian h3{
+   font-size: 5rem;
+   color:var(--white);
+   text-transform: uppercase;
+}
+
+.pencarian p{
+   font-size: 2.5rem;
+   color:var(--light-white);
+}
+
+.pencarian p a{
+   font-weight: 450;
+   color:var(--blue);
+}
+
+.pencarian p a:hover{
+   text-decoration: underline;
+}
+
 .heading{
    min-height: 30vh;
    display: flex;
@@ -165,6 +233,106 @@ section{
    text-decoration: underline;
 }
 
+.katalog{
+   min-height: 30vh;
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   justify-content: center;
+   gap:1rem;
+   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/katalog.jpg) fixed center no-repeat;
+   background-size: cover;
+   background-position: center;
+   text-align: center;
+}
+
+.katalog h3{
+   font-size: 5rem;
+   color:var(--white);
+   text-transform: uppercase;
+}
+
+.katalog p{
+   font-size: 2.5rem;
+   color:var(--light-white);
+}
+
+.katalog p a{
+   font-weight: 450;
+   color:var(--blue);
+}
+
+.katalog p a:hover{
+   text-decoration: underline;
+}
+
+.riwayat{
+   min-height: 30vh;
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   justify-content: center;
+   gap:1rem;
+   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/riwayat.jpg) fixed center no-repeat;
+   background-size: cover;
+   background-position: center;
+   text-align: center;
+}
+
+.riwayat h3{
+   font-size: 5rem;
+   color:var(--white);
+   text-transform: uppercase;
+}
+
+.riwayat p{
+   font-size: 2.5rem;
+   color:var(--light-white);
+}
+
+.riwayat p a{
+   font-weight: 450;
+   color:var(--blue);
+}
+
+.riwayat p a:hover{
+   text-decoration: underline;
+}
+
+.tentang{
+   min-height: 30vh;
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   justify-content: center;
+   gap:1rem;
+   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/tentang.jpg) fixed center no-repeat;
+   background-size: cover;
+   background-position: center;
+   background-position-y: -205px ;
+   text-align: center;
+}
+
+.tentang h3{
+   font-size: 5rem;
+   color:var(--white);
+   text-transform: uppercase;
+}
+
+.tentang p{
+   font-size: 2.5rem;
+   color:var(--light-white);
+}
+
+.tentang p a{
+   font-weight: 450;
+   color:var(--blue);
+}
+
+.tentang p a:hover{
+   text-decoration: underline;
+}
+
 @keyframes fadeIn {
    0%{
       transform: translateY(1rem);
@@ -174,7 +342,9 @@ section{
 
 .form-container{
    min-height: 100vh;
-   background-color: var(--light-bg);
+   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/login.jpg) no-repeat;
+   background-size: cover;
+   background-position: center;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -186,13 +356,12 @@ section{
    width: 50rem;
    border-radius: .5rem;
    box-shadow: var(--box-shadow);
-   border:var(--border);
    background-color: var(--white);
    text-align: center;
 }
 
 .form-container form h3{
-   font-size: 3rem;
+   font-size: 3.5rem;
    margin-bottom: 1rem;
    text-transform: uppercase;
    color:var(--black);
@@ -204,8 +373,6 @@ section{
    background-color: var(--light-bg);
    padding:1.2rem 1.4rem;
    font-size: 1.8rem;
-   color:var(--black);
-   border:var(--border);
    margin:1rem 0;
 }
 
@@ -225,18 +392,18 @@ section{
 
 
 
-.header .header-2{
+.header{
    background-color: var(--white);
    box-shadow: var(--box-shadow);
 }
 
-.header .header-2.active{
+.header .active{
    position: fixed;
    top:0; left:0; right:0;
    z-index: 1000;
 }
 
-.header .header-2 .flex{
+.header .flex{
    padding:2rem;
    display: flex;
    align-items: center;
@@ -247,42 +414,42 @@ section{
 }
 
 
-.header .header-2 .flex .logo {
+.header .flex .logo {
    display: flex;
    align-items: center;
 }
 
-.header .header-2 .flex .logo img {
+.header .flex .logo img {
    width: 3.8rem;
    height: 3.8rem;
    margin-right: 0.5rem;
 }
 
-.header .header-2 .flex .logo span {
+.header .flex .logo span {
    font-size: 2.5rem; 
    color: var(--blue);
 }
 
 
-.header .header-2 .flex .navbar a{
+.header .flex .navbar a{
    margin:0 1rem;
    font-size: 2rem;
    color:var(--light-color);
 }
 
-.header .header-2 .flex .navbar a:hover{
+.header .flex .navbar a:hover{
    color:var(--blue);
    text-decoration: underline;
 }
 
-.header .header-2 .flex .icons > *{
+.header .flex .icons > *{
    font-size: 2.5rem;
    color:var(--black);
    cursor: pointer;
    margin-left: 1.5rem;
 }
 
-.header .header-2 .flex .icons > *:hover{
+.header .flex .icons > *:hover{
    color:var(--blue);
 }
 
@@ -290,36 +457,38 @@ section{
    display: none;
 }
 
-.header .header-2 .flex .user-box{
+.header .flex .user-box{
    position: absolute;
-   top:120%; right:2rem;
+   top: 100%;
+   right: 1rem;
+   left: auto;
    background-color: var(--white);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    box-shadow: var(--box-shadow);
-   border:var(--border);
-   padding:2rem;
+   border: var(--border);
+   padding: 2rem;
    text-align: center;
    width: 35rem;
    display: none;
-   animation: fadeIn .2s linear;
+   animation: fadeIn 0.2s linear;
 }
 
-.header .header-2 .flex .user-box.active{
+.header .flex .user-box.active{
    display: inline-block;
 }
 
-.header .header-2 .flex .user-box p{
+.header .flex .user-box p{
    font-size: 2rem;
    text-align: left;
    color:var(--light-color);
    margin-bottom: 1.5rem;
 }
 
-.header .header-2 .flex .user-box p span{
+.header .flex .user-box p span{
    color:var(--blue);
 }
 
-.header .header-2 .flex .user-box .delete-btn{
+.header .flex .user-box .delete-btn{
    margin-top: 0;
 }
 
@@ -355,11 +524,12 @@ section{
    max-width: 1200px;
    margin:0 auto;
    display: grid;
-   grid-template-columns: repeat(auto-fit, 30rem);
+   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
    align-items: flex-start;
    gap:1.5rem;
    justify-content: center;
 }
+
 
 .products .box-container .box{
    border-radius: .5rem;
@@ -376,34 +546,24 @@ section{
 }
 
 .products .box-container .box .name{
-   padding:1rem 0;
-   font-size: 2rem;
-   color:var(--black);
-}
-.products .box-container .box .kategori{
-   padding:1rem 0;
-   font-size: 2rem;
-   text-align: left;
-   color:var(--black);
-}
-
-.products .box-container .box .qty{
-   width: 100%;
-   padding:1.2rem 1.4rem;
-   border-radius: .5rem;
-   border:var(--border);
-   margin:1rem 0;
-   font-size: 2rem;
-}
-
-.products .box-container .box .price{
-   position: absolute;
-   top:1rem; left:1rem;
-   border-radius: .5rem;
-   padding:1rem;
+   padding: 2rem 0;
    font-size: 2.5rem;
-   color:var(--white);
-   background-color: var(--red);
+   color: #000;
+}
+
+.products .box-container .box .kategori{
+   margin-left: 5.7rem;
+   font-size: 2rem;
+   color: var(--black);
+   text-align: left;
+}
+
+.products .box-container .box .penulis{
+   padding: 1rem 0;
+   margin-left: 5.7rem;
+   font-size: 2rem;
+   color: var(--black);
+   text-align: left;
 }
 
 .about .flex{
@@ -415,6 +575,7 @@ section{
 }
 
 .about .flex .image{
+   max-width: 1400px;
    flex:1 1 40rem;
 }
 
@@ -424,11 +585,9 @@ section{
 }
 
 .about .flex .content{
-   flex:1 1 40rem;
-   padding:1rem;
+   flex:1 1 38rem;
+   padding: 1rem;;
    border-radius: 3%;
-   border-top-left-radius: 3%;
-   border-bottom-left-radius: 3%;
    background-color: var(--light-bg);
 }
 
@@ -472,7 +631,7 @@ section{
    max-width: 720px;
    margin:0 auto;
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+   grid-template-columns: repeat(auto-fit, 35rem);
    align-items: center;
    gap:1.5rem;
    justify-content: center;
@@ -481,10 +640,9 @@ section{
 .authors .box-container .box{
    position: relative;
    text-align: center;
-   border:var(--border);
    box-shadow: var(--box-shadow);
    overflow: hidden;
-   border-radius: .5rem;
+   border-radius: 2rem;
 }
 
 .authors .box-container .box img{
@@ -508,14 +666,15 @@ section{
    line-height: 4.5rem;
    font-size: 2rem;
    background-color: var(--white);
-   border:var(--border);
+   border:var(--blue);
+   border-radius: 2rem;
    display: block;
    margin-top: 1rem;
-   color:var(--black);
+   color:var(--blue);
 }
 
 .authors .box-container .box .share a:hover{
-   background-color: var(--black);
+   background-color: var(--blue);
    color:var(--white);
 }
 
@@ -606,10 +765,19 @@ section{
    color:var(--black);
 }
 
-.shopping-cart .box-container .box .price{
-   padding:1rem 0;
-   font-size: 2.5rem;
-   color:var(--red);
+.shopping-cart .box-container .box .kategori{
+   margin-left: 5.7rem;
+   font-size: 2rem;
+   color: var(--black);
+   text-align: left;
+}
+
+.shopping-cart .box-container .box .penulis{
+   padding: 1rem 0;
+   margin-left: 5.7rem;
+   font-size: 2rem;
+   color: var(--black);
+   text-align: left;
 }
 
 .shopping-cart .box-container .box input[type="number"]{
@@ -786,13 +954,57 @@ section{
 .search-form form .box{
    width: 100%;
    padding:1.2rem 1.4rem;
-   border:var(--border);
    font-size: 2rem;
    color:var(--black);
    background-color: var(--light-bg);
    border-radius: .5rem;
 }
 
+.search .box-container{
+   max-width: 1200px;
+   margin:0 auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 30rem);
+   align-items: flex-start;
+   gap:1.5rem;
+   justify-content: center;
+}
+
+.search .box-container .box{
+   border-radius: .5rem;
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   padding:2rem;
+   text-align: center;
+   border:var(--border);
+   position: relative;
+}
+
+
+.search .box-container .box .image{
+   height: 30rem;
+}
+
+.search .box-container .box .name{
+   padding: 2rem 0;
+   font-size: 2.5rem;
+   color: #000;
+}
+
+.search .box-container .box .kategori{
+   margin-left: 1.3rem;
+   font-size: 2rem;
+   color: var(--black);
+   text-align: left;
+}
+
+.search .box-container .box .penulis{
+   padding: 1rem 0;
+   margin-left: 1.3rem;
+   font-size: 2rem;
+   color: var(--black);
+   text-align: left;
+}
 
 .footer{
    background-color: var(--light-bg);
@@ -847,9 +1059,6 @@ section{
 
 
 
-
-/* media queries  */
-
 @media (max-width:991px){
 
    html{
@@ -862,9 +1071,13 @@ section{
 
    #menu-btn{
       display: inline-block;
+      font-size: 2.5rem;
+      color:var(--black);
+      cursor: pointer;
+      margin-right: 1.5rem;
    }
 
-   .header .header-2 .flex .navbar{
+   .header .flex .navbar{
       position: absolute;
       top:99%; left:0; right:0;
       background-color: var(--white);
@@ -873,11 +1086,11 @@ section{
       clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
    }
 
-   .header .header-2 .flex .navbar.active{
+   .header .flex .navbar.active{
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
    }
 
-   .header .header-2 .flex .navbar a{
+   .header .flex .navbar a{
       display: block;
       font-size: 2.5rem;
       margin:2rem;
