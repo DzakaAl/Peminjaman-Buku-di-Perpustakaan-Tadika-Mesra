@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
 
 :root{
-   --purple:#19a7ce;
+   --blue:#19a7ce;
    --red:#c0392b;
    --orange:#f39c12;
    --black:#333;
@@ -23,7 +23,7 @@
 }
 
 *::selection{
-   background-color: var(--purple);
+   background-color: var(--blue);
    color:var(--white);
 }
 
@@ -37,7 +37,7 @@
 }
 
 *::-webkit-scrollbar-thumb{
-   background-color: var(--purple);
+   background-color: var(--blue);
 }
 
 html{
@@ -121,7 +121,7 @@ section{
 
 .white-btn,
 .btn{
-   background-color: var(--purple);
+   background-color: var(--blue);
 }
 
 .option-btn{
@@ -168,7 +168,7 @@ section{
 }
 
 .header .flex .logo span{
-   color:var(--purple);
+   color:var(--blue);
 }
 
 .header .flex .navbar a{
@@ -178,7 +178,7 @@ section{
 }
 
 .header .flex .navbar a:hover{
-   color:var(--purple);
+   color:var(--blue);
 }
 
 .header .flex .icons div{
@@ -189,7 +189,7 @@ section{
 }
 
 .header .flex .icons div:hover{
-   color:var(--purple);
+   color:var(--blue);
 }
 
 .header .flex .account-box{
@@ -219,7 +219,7 @@ section{
 }
 
 .header .flex .account-box p span{
-   color:var(--purple);
+   color:var(--blue);
 }
 
 .header .flex .account-box .delete-btn{
@@ -329,12 +329,27 @@ section{
       height: 30rem;
    }
 
-   .show-products .box-container .box .name,
+   .show-products .box-container .box .name{
+      padding: 2rem 0;
+      font-size: 2.5rem;
+      color: #000;
+   }
+   
    .show-products .box-container .box .kategori{
-      padding: 1rem 0;
+      margin-left: 5rem;
       font-size: 2rem;
       color: var(--black);
+      text-align: left;
    }
+
+   .show-products .box-container .box .penulis{
+      padding: 1rem 0;
+      margin-left: 5rem;
+      font-size: 2rem;
+      color: var(--black);
+      text-align: left;
+   }
+
 
    .edit-product-form{
       min-height: 100vh;
@@ -400,7 +415,7 @@ section{
 }
 
 .orders .box-container .box p span{
-   color:var(--purple);
+   color:var(--blue);
 }
 
 .orders .box-container .box form{
@@ -444,7 +459,7 @@ section{
 }
 
 .users .box-container .box p span{
-   color:var(--purple);
+   color:var(--blue);
 }
 
 .users .box-container .box .delete-btn{
@@ -477,7 +492,7 @@ section{
 }
 
 .messages .box-container .box p span{
-   color:var(--purple);
+   color:var(-blue);
 }
 
 .messages .box-container .box .delete-btn{
@@ -485,25 +500,6 @@ section{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* media queries  */
 
 @media (max-width:991px){
 
@@ -517,6 +513,10 @@ section{
 
    #menu-btn{
       display: inline-block;
+      margin-right: 1rem;
+      font-size: 2.5rem;
+      cursor: pointer;
+      color:var(--black);
    }
 
    .header .flex .navbar{
