@@ -11,20 +11,20 @@ if(!isset($user_id)){
 }
 
 if(isset($_POST['add_to_cart'])){
+
    $product_name = $_POST['product_name'];
-   $product_kategori = $_POST['product_kategori'];
    $product_image = $_POST['product_image'];
-   $product_quantity = $_POST['product_quantity'];
    $product_pdf = $_POST['product_pdf'];
 
-   $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
+   $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE nama = '$product_name' AND pengguna_id = '$user_id'") or die('query failed');
 
-   if(mysqli_num_rows($check_cart_numbers) > 0){
+   if (mysqli_num_rows($check_cart_numbers) > 0) {
       $message[] = 'Buku Ditambahkan ke Keranjang!';
-   }else{
-      mysqli_query($conn, "INSERT INTO `cart`(user_id, name, quantity, image, pdf) VALUES('$user_id', '$product_name', '$product_quantity', '$product_image', '$product_pdf')") or die('query failed');
+   } else {
+      mysqli_query($conn, "INSERT INTO `keranjang`(pengguna_id, nama, kuantitas, pdf, gambar) VALUES('$user_id', '$product_name', '1', '$product_pdf', '$product_image')") or die('query failed');
       $message[] = 'Buku Ditambahkan ke Keranjang!';
    }
+
 }
 
 ?>
@@ -36,11 +36,10 @@ if(isset($_POST['add_to_cart'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Katalog</title>
+   <link rel="icon" href="images/perpus.png">
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -48,31 +47,30 @@ if(isset($_POST['add_to_cart'])){
    
 <?php include 'header.php'; ?>
 
-<div class="heading">
+<div class="katalog">
    <h3>Katalog</h3>
    <p> <a href="beranda.php">Beranda</a> / Katalog </p>
 </div>
 
 <section class="products">
 
-   <h1 class="title">Produk Terbaru</h1>
+   <h1 class="title">Daftar Buku</h1>
 
    <div class="box-container">
 
       <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT * FROM `buku`") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
      <form action="" method="post" class="box">
-      <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-      <div class="name"><?php echo $fetch_products['name']; ?></div>
-      <div class="kategori"><?php echo $fetch_products['product_kategori']; ?></div>
-      <input type="number" min="1" name="product_quantity" value="1" class="qty">
-      <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-      <input type="hidden" name="product_kategori" value="<?php echo $fetch_products['product_kategori']; ?>">
-      <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+      <img class="image" src="uploaded_img/<?php echo $fetch_products['gambar']; ?>" alt="">
+      <div class="name"><?php echo $fetch_products['nama']; ?></div>
+      <div class="kategori">Kategori : <?php echo $fetch_products['kategori']; ?></div>
+      <div class="penulis">Penulis : <?php echo $fetch_products['penulis']; ?></div>
+      <input type="hidden" name="product_name" value="<?php echo $fetch_products['nama']; ?>">
       <input type="hidden" name="product_pdf" value="<?php echo $fetch_products['pdf']; ?>">
+      <input type="hidden" name="product_image" value="<?php echo $fetch_products['gambar']; ?>">
       <input type="submit" value="Masukkan Keranjang" name="add_to_cart" class="btn">
      </form>
       <?php
@@ -85,9 +83,15 @@ if(isset($_POST['add_to_cart'])){
 
 </section>
 
+
+
+
+
+
+
+
 <?php include 'footer.php'; ?>
 
-<!-- custom js file link  -->
 <script src="js/script.js"></script>
 
 </body>
