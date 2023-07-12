@@ -4,13 +4,13 @@ include 'config.php';
 
 if(isset($_POST['submit'])){
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
+   $nama = mysqli_real_escape_string($conn, $_POST['nama']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
-   $user_type = $_POST['user_type'];
+   $tipe_pengguna = $_POST['tipe_pengguna'];
 
-   $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+   $select_users = mysqli_query($conn, "SELECT * FROM `pengguna` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
    if(mysqli_num_rows($select_users) > 0){
       $message[] = 'Username Tidak Tersedia!';
@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $message[] = 'Password Tidak Sama!';
       }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
+         mysqli_query($conn, "INSERT INTO `pengguna`(nama, email, password, tipe_pengguna) VALUES('$nama', '$email', '$cpass', '$tipe_pengguna')") or die('query failed');
          $message[] = 'Daftar Berhasil!';
          header('location:login.php');
       }
@@ -35,11 +35,10 @@ if(isset($_POST['submit'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Daftar</title>
+   <link rel="icon" href="images/perpus.png">
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -64,16 +63,16 @@ if(isset($message)){
 
    <form action="" method="post">
       <h3>Buat Akun</h3>
-      <input type="text" name="name" placeholder="Masukkan Nama" required class="box">
+      <input type="text" name="nama" placeholder="Masukkan Nama" required class="box">
       <input type="email" name="email" placeholder="Masukkan Email" required class="box">
       <input type="password" name="password" placeholder="Masukkan Password" required class="box">
       <input type="password" name="cpassword" placeholder="Ulangi Password" required class="box">
-      <select name="user_type" class="box">
-         <option value="user">user</option>
-         <option value="admin">admin</option>
+      <select name="tipe_pengguna" class="box">
+         <option value="pengguna">Pengguna</option>
+         <option value="admin">Admin</option>
       </select>
       <input type="submit" name="submit" value="Daftar" class="btn">
-      <p>Apakah Sudah Punya Akun? <a href="login.php">login</a></p>
+      <p>Apakah Anda sudah memiliki akun ? <a href="login.php">Login</a></p>
    </form>
 
 </div>
