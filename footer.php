@@ -15,7 +15,7 @@
          <a href="login.php">Login</a>
          <a href="register.php"> Register</a>
          <a href="keranjang.php">Keranjang</a>
-         <a href="kritik&saran.php">Kritik&Saran</a>
+         <a href="kritikdansaran.php">Kritik dan Saran</a>
       </div>
 
       <div class="box">
@@ -28,12 +28,12 @@
       <div class="box">
          <h3>ikuti kami</h3>
          <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
-         <a href="#"> <i class="fab fa-twitter"></i> Twitter </a>
+         <a href="https://twitter.com/@garismirekel"> <i class="fab fa-twitter"></i> Twitter </a>
          <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
       </div>
 
    </div>
 
-   <p class="credit"> &copy; copyright  @ <?php echo date('Y'); ?> by <span>Perpustakaan Tadika Mesra</span> </p>
+   <p class="credit"> &copy;copyright @ <?php echo date('Y'); ?> by <span>Perpustakaan Tadika Mesra</span> </p>
 
 </section>
