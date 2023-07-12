@@ -18,7 +18,8 @@ if(!isset($admin_id)){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Admin Panel</title>
+   <title>Panel Admin</title>
+   <link rel="icon" href="images/perpus.png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -41,7 +42,7 @@ if(!isset($admin_id)){
 
       <div class="box">
          <?php 
-            $select_orders = mysqli_query($conn, "SELECT * FROM `orders`") or die('query failed');
+            $select_orders = mysqli_query($conn, "SELECT * FROM `riwayat`") or die('query failed');
             $number_of_orders = mysqli_num_rows($select_orders);
          ?>
          <h3><?php echo $number_of_orders; ?></h3>
@@ -50,7 +51,7 @@ if(!isset($admin_id)){
 
       <div class="box">
          <?php 
-            $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `buku`") or die('query failed');
             $number_of_products = mysqli_num_rows($select_products);
          ?>
          <h3><?php echo $number_of_products; ?></h3>
@@ -59,16 +60,16 @@ if(!isset($admin_id)){
 
       <div class="box">
          <?php 
-            $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'user'") or die('query failed');
+            $select_users = mysqli_query($conn, "SELECT * FROM `pengguna` WHERE tipe_pengguna = 'Pengguna'") or die('query failed');
             $number_of_users = mysqli_num_rows($select_users);
          ?>
          <h3><?php echo $number_of_users; ?></h3>
-         <p>Pengguna</p>
+         <p>Akun Pengguna</p>
       </div>
 
       <div class="box">
          <?php 
-            $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'admin'") or die('query failed');
+            $select_admins = mysqli_query($conn, "SELECT * FROM `pengguna` WHERE tipe_pengguna = 'Admin'") or die('query failed');
             $number_of_admins = mysqli_num_rows($select_admins);
          ?>
          <h3><?php echo $number_of_admins; ?></h3>
@@ -77,7 +78,7 @@ if(!isset($admin_id)){
 
       <div class="box">
          <?php 
-            $select_account = mysqli_query($conn, "SELECT * FROM `users`") or die('query failed');
+            $select_account = mysqli_query($conn, "SELECT * FROM `pengguna`") or die('query failed');
             $number_of_account = mysqli_num_rows($select_account);
          ?>
          <h3><?php echo $number_of_account; ?></h3>
@@ -86,28 +87,17 @@ if(!isset($admin_id)){
 
       <div class="box">
          <?php 
-            $select_messages = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
+            $select_messages = mysqli_query($conn, "SELECT * FROM `kritikdansaran`") or die('query failed');
             $number_of_messages = mysqli_num_rows($select_messages);
          ?>
          <h3><?php echo $number_of_messages; ?></h3>
-         <p>Kritik&Saran</p>
+         <p>Kritik dan Saran</p>
       </div>
 
    </div>
 
 </section>
 
-<!-- admin dashboard section ends -->
-
-
-
-
-
-
-
-
-
-<!-- custom admin js file link  -->
 <script src="js/admin_script.js"></script>
 
 </body>
