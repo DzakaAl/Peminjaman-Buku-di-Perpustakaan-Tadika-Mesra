@@ -14,24 +14,25 @@ if(isset($message)){
 <header class="header">
 
    <div class="flex">
-
-      <a href="admin_dashboard.php" class="logo">Admin<span> Panel</span></a>
+      <div class="logo">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <a href="admin_dashboard.php" class="logo">Panel<span> Admin</span></a>
+      </div>
 
       <nav class="navbar">
          <a href="admin_dashboard.php">Dashboard</a>
          <a href="admin_buku.php">Buku</a>
          <a href="admin_riwayat.php">Riwayat</a>
-         <a href="admin_users.php">Pengguna</a>
-         <a href="admin_kritik&saran.php">Kritik&Saran</a>
+         <a href="admin_users.php">Akun Pengguna</a>
+         <a href="admin_kritikdansaran.php">Kritik dan Saran</a>
       </nav>
 
       <div class="icons">
-         <div id="menu-btn" class="fas fa-bars"></div>
          <div id="user-btn" class="fas fa-user"></div>
       </div>
 
       <div class="account-box">
-         <p>Username : <span><?php echo $_SESSION['admin_name']; ?></span></p>
+         <p>Username : <span><?php echo $_SESSION['admin_nama']; ?></span></p>
          <p>Email : <span><?php echo $_SESSION['admin_email']; ?></span></p>
          <a href="logout.php" class="delete-btn">Logout</a>
       </div>
