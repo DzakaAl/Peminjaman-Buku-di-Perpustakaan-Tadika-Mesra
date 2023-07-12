@@ -9,7 +9,7 @@ if (!isset($user_id)) {
    exit(); 
 }
 
-$message = [];
+$message = []; 
 
 if (isset($_POST['order_btn'])) {
 
@@ -27,31 +27,29 @@ if (isset($_POST['order_btn'])) {
    }
 
    $kodepinjam = generateRandomCode(8);
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $number = $_POST['number'];
+   $name = mysqli_real_escape_string($conn, $_POST['nama']);
+   $number = $_POST['telp'];
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $tanggalpinjam = $_POST['tanggalpinjam'];
-   $address = mysqli_real_escape_string($conn, $_POST['flat'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['state'] . ', ' . $_POST['country']);
-   $tanggalkembali = date('Y-m-d', strtotime($tanggalpinjam . '+14 days'));
+   $address = mysqli_real_escape_string($conn, $_POST['blogs'] . ', ' . $_POST['jalan'] . ', ' . $_POST['kota'] . ', ' . $_POST['provinsi'] . ', ' . $_POST['negara']);
+   $tanggalkembali = date('Y-m-d', strtotime($tanggalpinjam . '+7 days'));
    $cart_total = 0;
-   $link_pdf=array();
+   $cart_pdf = array();
    $cart_products = array();
 
-   $cart_query = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+   $cart_query = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE pengguna_id = '$user_id'") or die('query failed');
    if (mysqli_num_rows($cart_query) > 0) {
       while ($cart_item = mysqli_fetch_assoc($cart_query)) {
-         $cart_products[] = $cart_item['name'] . ' (' . $cart_item['quantity'] . ') ';
-         $sub_total = $cart_item['quantity'];
+         $cart_products[] = $cart_item['nama'] . ' (' . $cart_item['kuantitas'] . ') ';
+         $sub_total = $cart_item['kuantitas'];
          $cart_total += $sub_total;
-         $link_pdf[] = $cart_item['pdf'];
+         $cart_pdf[] = $cart_item['pdf'];
       }
    }
 
-   
    $total_products = implode(', ', $cart_products);
-   $total_link_pdf = implode(', ', $link_pdf);
-
-   $order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$name' AND number = '$number' AND email = '$email' AND address = '$address' AND total_products = '$total_products' AND tanggalpinjam = '$tanggalpinjam' AND tanggalkembali = '$tanggalkembali' AND kodepinjam = '$kodepinjam' AND link_pdf='$total_link_pdf'") or die('query failed');
+   $link_pdf = implode(', ', $cart_pdf);
+   $order_query = mysqli_query($conn, "SELECT * FROM `riwayat` WHERE nama = '$name' AND telp = '$number' AND email = '$email' AND alamat = '$address' AND total_buku = '$total_products' AND tanggalpinjam = '$tanggalpinjam' AND tanggalkembali = '$tanggalkembali' AND kodepinjam = '$kodepinjam' AND link_pdf = '$link_pdf'") or die('query failed');
 
    if ($cart_total == 0) {
       $message[] = 'Keranjang kosong';
@@ -59,13 +57,12 @@ if (isset($_POST['order_btn'])) {
       if (mysqli_num_rows($order_query) > 0) {
          $message[] = 'Peminjaman Sudah Dilakukan!';
       } else {
-         mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email, address, total_products, tanggalpinjam, tanggalkembali, kodepinjam, link_pdf) VALUES('$user_id', '$name', '$number', '$email', '$address', '$total_products', '$tanggalpinjam', '$tanggalkembali', '$kodepinjam', '$total_link_pdf')") or die('query failed');
+         mysqli_query($conn, "INSERT INTO `riwayat`(pengguna_id, nama, telp, email, alamat, total_buku, tanggalpinjam, tanggalkembali, kodepinjam, link_pdf) VALUES('$user_id', '$name', '$number', '$email', '$address', '$total_products', '$tanggalpinjam', '$tanggalkembali', '$kodepinjam', '$link_pdf')") or die('query failed');
          $message[] = 'Peminjaman Sudah Dilakukan!';
-         mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+         mysqli_query($conn, "DELETE FROM `keranjang` WHERE pengguna_id = '$user_id'") or die('query failed');
       }
    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -76,11 +73,10 @@ if (isset($_POST['order_btn'])) {
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Pinjam</title>
+   <link rel="icon" href="images/perpus.png">
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -98,20 +94,20 @@ if (isset($_POST['order_btn'])) {
 
       <?php
       $grand_total = 0;
-      $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+      $select_cart = mysqli_query($conn, "SELECT * FROM `keranjang` WHERE pengguna_id = '$user_id'") or die('query failed');
       if (mysqli_num_rows($select_cart) > 0) {
          while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
-            $total_price = $fetch_cart['quantity'];
+            $total_price = $fetch_cart['kuantitas'];
             $grand_total += $total_price;
             ?>
-            <p><?php echo $fetch_cart['name']; ?></p>
+            <p><?php echo $fetch_cart['nama']; ?></p>
       <?php
          }
       } else {
          echo '<p class="empty">Keranjang Kosong</p>';
       }
       ?>
-      <div class="grand-total"> Total Buku : <span><?php echo $grand_total; ?>/-</span> </div>
+      <div class="grand-total"> Total Buku : <span><?php echo $grand_total; ?></span> </div>
 
    </section>
 
@@ -122,11 +118,11 @@ if (isset($_POST['order_btn'])) {
          <div class="flex">
             <div class="inputBox">
                <span>Nama :</span>
-               <input type="text" name="name" required placeholder="Masukan Nama">
+               <input type="text" name="nama" required placeholder="Masukan Nama">
             </div>
             <div class="inputBox">
                <span>Nomor Telepon :</span>
-               <input type="text" name="number" required placeholder="Masukan Nomor">
+               <input type="text" name="telp" required placeholder="Masukan Nomor">
             </div>
             <div class="inputBox">
                <span>Email :</span>
@@ -138,23 +134,23 @@ if (isset($_POST['order_btn'])) {
             </div>
             <div class="inputBox">
                <span>Alamat :</span>
-               <input type="text" name="flat" required placeholder="contoh: Nama Jalan, Gedung, No. Rumah">
+               <input type="text" name="blogs" required placeholder="contoh: Nama Jalan, Gedung, No. Rumah">
             </div>
             <div class="inputBox">
                <span>Alamat Lengkap :</span>
-               <input type="text" name="street" required placeholder="contoh: blok, no.unit, patokan">
+               <input type="text" name="jalan" required placeholder="contoh: blok, no.unit, patokan">
             </div>
             <div class="inputBox">
                <span>Kota :</span>
-               <input type="text" name="city" required placeholder="contoh: bantul">
+               <input type="text" name="kota" required placeholder="contoh: bantul">
             </div>
             <div class="inputBox">
                <span>Provinsi :</span>
-               <input type="text" name="state" required placeholder="contoh: yogyakarta">
+               <input type="text" name="provinsi" required placeholder="contoh: yogyakarta">
             </div>
             <div class="inputBox">
                <span>Negara :</span>
-               <input type="text" name="country" required placeholder="contoh: indonesia">
+               <input type="text" name="negara" required placeholder="contoh: indonesia">
             </div>
          </div>
          <input type="submit" value="Pinjam" class="btn" name="order_btn">
@@ -164,7 +160,6 @@ if (isset($_POST['order_btn'])) {
 
    <?php include 'footer.php'; ?>
 
-   <!-- custom js file link  -->
    <script src="js/script.js"></script>
 
 </body>
