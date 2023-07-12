@@ -19,11 +19,10 @@ if(!isset($user_id)){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Riwayat</title>
+   <link rel="icon" href="images/perpus.png">
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -31,7 +30,7 @@ if(!isset($user_id)){
    
 <?php include 'header.php'; ?>
 
-<div class="heading">
+<div class="riwayat">
    <h3>Riwayat</h3>
    <p> <a href="beranda.php">Beranda</a> / Riwayat </p>
 </div>
@@ -43,21 +42,20 @@ if(!isset($user_id)){
    <div class="box-container">
 
       <?php
-         $order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE user_id = '$user_id'") or die('query failed');
+         $order_query = mysqli_query($conn, "SELECT * FROM `riwayat` WHERE pengguna_id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($order_query) > 0){
             while($fetch_orders = mysqli_fetch_assoc($order_query)){
       ?>
       <div class="box">
-         <p> Nama : <span><?php echo $fetch_orders['name']; ?></span> </p>
-         <p> Nomor Telepon : <span><?php echo $fetch_orders['number']; ?></span> </p>
+         <p> Nama : <span><?php echo $fetch_orders['nama']; ?></span> </p>
+         <p> Nomor Telepon : <span><?php echo $fetch_orders['telp']; ?></span> </p>
          <p> Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-         <p> Alamat : <span><?php echo $fetch_orders['address']; ?></span> </p>
-         <p> Buku yang dipinjam : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
-         <p> Tanggal Pinjam : <span><?php echo $fetch_orders['tanggalpinjam']; ?></span> </p>
+         <p> Alamat : <span><?php echo $fetch_orders['alamat']; ?></span> </p>
+         <p> Buku yang dipinjam : <span><?php echo $fetch_orders['total_buku']; ?></span></p>
+         <p> Tanggal Pinjam : <span><?php echo $fetch_orders['tanggalpinjam']; ?></span></p>
          <p> Batas Peminjaman : <span><?php echo $fetch_orders['tanggalkembali']; ?></span> </p>
-         <p> Kode Peminjaman : <span><?php echo $fetch_orders['Kodepeminjaman']; ?></span> </p>
          <p> Link Buku : <span><?php echo $fetch_orders['link_pdf']; ?></span> </p>
-         <p> Status peminjaman : <span style="color:<?php if($fetch_orders['payment_status'] == 'Buku Melewati Batas'){ echo 'red'; }else{ echo 'green'; } ?>;"><?php echo $fetch_orders['payment_status']; ?></span> </p>
+         <p> Status peminjaman : <span style="color:<?php if($fetch_orders['status_pembayaran'] == 'Buku Melewati Batas'){ echo 'red'; }else{ echo 'green'; } ?>;"><?php echo $fetch_orders['status_pembayaran']; ?></span> </p>
          </div>
       <?php
        }
