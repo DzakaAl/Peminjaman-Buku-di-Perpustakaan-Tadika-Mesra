@@ -160,8 +160,8 @@ Kami sangat menghargai kontribusi dari komunitas! Ikuti langkah berikut:
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-DzakaAl-181717?style=for-the-badge&logo=github)](https://github.com/DzakaAl)
-[![GitHub](https://img.shields.io/badge/GitHub-DzakaAl-181717?style=for-the-badge&logo=github)](https://github.com/kuahcurry)
-[![GitHub](https://img.shields.io/badge/GitHub-DzakaAl-181717?style=for-the-badge&logo=github)](https://github.com/Farellramadhan)
+[![GitHub](https://img.shields.io/badge/GitHub-kuahcurry-181717?style=for-the-badge&logo=github)](https://github.com/kuahcurry)
+[![GitHub](https://img.shields.io/badge/GitHub-Farellramadhan-181717?style=for-the-badge&logo=github)](https://github.com/Farellramadhan)
 </div>
 
 ---
@@ -182,7 +182,7 @@ Proyek ini dilisensikan di bawah **MIT License**. Lihat file [LICENSE](LICENSE) 
 
 ### 🌟 **Jika project ini bermanfaat, jangan lupa berikan ⭐ ya!** 🌟
 
-*Made with ❤️ by Tim Pengembang Tadika Mesra*
+*Made by Tim Pengembang Tadika Mesra*
 
 **© 2024 Sistem Peminjaman Buku Perpustakaan Tadika Mesra. All rights reserved.**
 
