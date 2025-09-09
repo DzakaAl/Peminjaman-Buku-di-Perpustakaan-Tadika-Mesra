@@ -1,11 +1,12 @@
-Tugas Akhir Pemrograman Web - Semester 2
+# Peminjaman Buku di Perpustakaan Tadika Mesra
 
-Projek Website Perpustakaan Digital
-beranggotakan :
-> Aqief Idlan Hakimi - 2200018051
-> M. Naufal Dzaky - 2200018055
-> M. Dzaka Al Fikri - 2200018057
-> Farrel Zacky A.R - 2200018061
+Welcome to the Peminjaman Buku di Perpustakaan Tadika Mesra project! This project aims to facilitate easy borrowing and returning of books in our library, ensuring a smooth experience for both the staff and the students.
 
-Link Google Drive : https://drive.google.com/drive/folders/1tUIyouZdWgugJX2Az-MfY8bKNhuyp87Y
-# Peminjaman-Buku-di-Perpustakaan-Tadika-Mesra
+## Team Members
+
+- **kuahcurry**
+  - [GitHub Profile](https://github.com/kuahcurry)
+  - [Instagram](https://instagram.com/qifhak)
+  - [Discord](https://discordapp.com/users/335028167242678272)
+
+Feel free to connect with us through our social media platforms!
